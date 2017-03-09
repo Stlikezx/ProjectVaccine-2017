@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="js/ng-cordova.min.js"></script>
+    <script src="cordova.js"></script>
+
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+
+    <!--Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+
+    <!--Angular-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.28/angular-route.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/01_main.js"></script>
+</head>
+<body ng-app="mainApp">
+    <ion-side-menus enable-menu-with-back-views="false" ng-controller="googleCtrl2">
+        <ion-side-menu-content>
+            <ion-nav-bar class="bar-stable">
+                <ion-nav-back-button>
+                </ion-nav-back-button>
+                <ion-nav-buttons side="left">
+                    <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+                </ion-nav-buttons>
+                <ion-nav-title>
+                    <h4 class="title">HOME</h4>
+                </ion-nav-title>
+                <ion-nav-buttons side="right">
+                    <button class="button button-icon icon ion-ios-plus-outline" ng-click="showAddChangeDialog()"></button>
+                    <button class="button button-icon icon ion-android-notifications" menu-toggle="left"></button>
+                </ion-nav-buttons>
+            </ion-nav-bar>
+            <ion-content class="has-header">
+                <ion-list>
+                    <ion-item  ng-repeat="item in alldata">
+                         {{item.nickname}}
+                      <ion-option-button class="button-assertive"
+                                         ng-click="edit(item)">
+                        Edit
+                      </ion-option-button>
+                      <ion-option-button class="button-calm"
+                                         ng-click="share(item)">
+                        Share
+                      </ion-option-button>
+                    </ion-item>
+                </ion-list>
+                </ion-content>
+                <ion-nav-view name="menuContent">
+                </ion-nav-view>
+       </ion-side-menu-content>
+        <ion-side-menu side="left">
+            <ion-header-bar class="bar-profile">
+                <div class="profile">
+                    <img class="profile-picture" src="{{photo}}" />
+                    <h3 class="name">{{name}}</h3>
+                </div>
+            </ion-header-bar>
+            <ion-content>
+                <ion-list>
+                    <ion-item menu-close ui-sref="app.home">
+                        Home
+                    </ion-item>
+                    <ion-item menu-close>
+                        Setting
+                    </ion-item>
+                    <ion-item menu-close>
+                        Info
+                    </ion-item>
+                    <ion-item ng-click="logout()">
+                        Logout
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-side-menu>
+    </ion-side-menus>
+
+</body>
+</html>

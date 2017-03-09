@@ -1,0 +1,36 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "io.cordova.myappdb7e4d"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "io.cordova.myappdb7e4d"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "io.cordova.myappdb7e4d"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "io.cordova.myappdb7e4d"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "io.cordova.myappdb7e4d"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "io.cordova.myappdb7e4d"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "io.cordova.myappdb7e4d"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "io.cordova.myappdb7e4d"
+        }
+    },
+    "dependent_plugins": {}
+}
