@@ -24,28 +24,29 @@ mainApp.run(function($ionicPlatform, $cordovaSQLite) {
 })
 
 
-mainApp.config(function($stateProvider, $urlRouterProvider) {
-    $stateProvider
+//mainApp.config(function($stateProvider, $urlRouterProvider) {
+//    $stateProvider
 
-      .state('app', {
-          url: "/app",
-          abstract: true,
-          templateUrl: "menu.html"
-      })
+//      .state('app', {
+//          url: "/app",
+//          abstract: true,
+//          templateUrl: "04_menu.html",
+//          controller: 'googleCtrl2'
+//      })
 
-      .state('app.home', {
-          url: '/02_home',
-          views: {
-              'menuContent': {
-                  templateUrl: "02_home.html",
-                  controller: 'homeController'
-              }
-          }
-      });
+//      .state('app.home', {
+//          url: '/home',
+//          views: {
+//              'menuContent': {
+//                  templateUrl: "02_home.html",
+//                  controller: 'googleCtrl2'
+//              }
+//          }
+//      });
 
-    // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/home');
-});
+//    // if none of the above states are matched, use this as the fallback
+//    $urlRouterProvider.otherwise('/app/home');
+//});
 
 var config = {
     apiKey: "AIzaSyCg3zxVD2ykqAhypLZe7rZ4ZjtfnnpEL_k",
@@ -86,14 +87,13 @@ mainApp.controller('googleCtrl', ['$scope', '$firebaseAuth', '$location',
 ]);
 
 
-mainApp.controller('googleCtrl2', ['$scope', '$ionicModal', '$cordovaSQLite',
-    function ($scope, $ionicModal, $cordovaSQLite) {
+mainApp.controller('googleCtrl2', ['$scope', '$ionicModal', '$cordovaSQLite', '$ionicListDelegate', '$ionicPopup',
+    function ($scope, $ionicModal, $cordovaSQLite, $ionicListDelegate, $ionicPopup) {
 
         ionic.Platform.ready(function () {
             $scope.loadDataDisplay();
         });
 
-        $scope.listCanSwipe = true
         $scope.name = window.localStorage.getItem("name");
         $scope.photo = window.localStorage.getItem("photoURL");
 
@@ -159,5 +159,25 @@ mainApp.controller('googleCtrl2', ['$scope', '$ionicModal', '$cordovaSQLite',
             });
 
         }
+
+        $scope.delete = function (item) {
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'Delete',
+                    template: 'Are you sure you want to delete' +' '+ item.nickname + '  ?'
+                });
+                confirmPopup.then(function (res) {
+                    if (res) {
+                        var query = "DELETE FROM test WHERE id = ?";
+                        $cordovaSQLite.execute(db, query, [item.id]);
+                    } else {
+
+                    }
+                });
+
+        };
+        $scope.share = function (item) {
+            alert('Share Item: ' + item.id);
+        };
+
     }
 ]);

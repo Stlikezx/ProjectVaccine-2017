@@ -32,3 +32,25 @@
 {
     top: 169px;
 }
+
+/*animate*/
+
+.animated-item {
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+}
+
+.item-content {
+  min-height: 0;
+}
+
+.animated-item.ng-leave.ng-leave-active,
+.animated-item.ng-enter {
+  max-height: 0;
+}
+
+  .animated-item.ng-leave,
+  .animated-item.ng-enter.ng-enter-active {
+    max-height: 52px;
+  }
