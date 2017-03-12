@@ -87,7 +87,7 @@ mainApp.controller('googleCtrl', ['$scope', '$firebaseAuth', '$location',
 ]);
 
 
-mainApp.controller('googleCtrl2', ['$scope', '$ionicModal', '$cordovaSQLite', '$ionicListDelegate', '$ionicPopup',
+mainApp.controller('mainCtrl', ['$scope', '$ionicModal', '$cordovaSQLite', '$ionicListDelegate', '$ionicPopup',
     function ($scope, $ionicModal, $cordovaSQLite, $ionicListDelegate, $ionicPopup) {
 
         ionic.Platform.ready(function () {
@@ -161,6 +161,7 @@ mainApp.controller('googleCtrl2', ['$scope', '$ionicModal', '$cordovaSQLite', '$
         }
 
         $scope.delete = function (item) {
+                console.log(item.id);
                 var confirmPopup = $ionicPopup.confirm({
                     title: 'Delete',
                     template: 'Are you sure you want to delete' +' '+ item.nickname + '  ?'
@@ -169,6 +170,7 @@ mainApp.controller('googleCtrl2', ['$scope', '$ionicModal', '$cordovaSQLite', '$
                     if (res) {
                         var query = "DELETE FROM test WHERE id = ?";
                         $cordovaSQLite.execute(db, query, [item.id]);
+                        $scope.loadDataDisplay();
                     } else {
 
                     }
@@ -177,6 +179,10 @@ mainApp.controller('googleCtrl2', ['$scope', '$ionicModal', '$cordovaSQLite', '$
         };
         $scope.share = function (item) {
             alert('Share Item: ' + item.id);
+        };
+
+        $scope.clicker = function (item) {
+            alert('Clicked: ' + item.id)
         };
 
     }

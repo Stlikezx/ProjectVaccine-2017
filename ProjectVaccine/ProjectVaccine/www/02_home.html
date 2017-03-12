@@ -28,8 +28,8 @@
     <script src="js/01_main.js"></script>
 </head>
 <body ng-app="mainApp">
-          <ion-view ng-controller="googleCtrl2">
-            <ion-side-menus enable-menu-with-back-views="false" ng-controller="googleCtrl2">
+          <ion-view ng-controller="mainCtrl">
+            <ion-side-menus enable-menu-with-back-views="false" ng-controller="mainCtrl">
               <ion-side-menu-content>
                 <ion-nav-bar class="bar-stable">
                   <ion-nav-back-button>
@@ -48,7 +48,7 @@
                 <ion-nav-view name="menuContent">
                   <ion-content class="has-header">
                     <ion-list>
-                      <ion-item ng-repeat="item in alldata">
+                      <ion-item ng-repeat="item in alldata" ng-click="clicker(item)">
                         <p>{{item.nickname}}</p>
                         <ion-option-button class="button-assertive"
                                            ng-click="delete(item)">
