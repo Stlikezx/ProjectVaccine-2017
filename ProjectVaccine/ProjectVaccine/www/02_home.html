@@ -41,7 +41,7 @@
                     <h4 class="title">HOME</h4>
                   </ion-nav-title>
                   <ion-nav-buttons side="right">
-                    <button class="button button-icon icon ion-ios-plus-outline" ng-click="showAddChangeDialog()"></button>
+                    <button class="button button-icon icon ion-ios-plus-outline" ng-click="showAddChangeDialog('add')"></button>
                     <button class="button button-icon icon ion-android-notifications" menu-toggle="left"></button>
                   </ion-nav-buttons>
                 </ion-nav-bar>
@@ -50,21 +50,12 @@
                     <ion-list>
                       <ion-item ng-repeat="item in alldata" ng-click="clicker(item)">
                         <p>{{item.nickname}}</p>
-                        <ion-option-button class="button-assertive"
+                        <ion-option-button class="button-assertive ion-trash-a"
                                            ng-click="delete(item)">
-                          Delete
                         </ion-option-button>
-                        <ion-option-button class="button-info"
-                                           ng-click="edit(item)">
-                          Edit
+                        <ion-option-button class="button-info ion-edit"
+                                           ng-click="edit(item,'edit')">
                         </ion-option-button>
-                        <ion-delete-button class="ion-minus-circled"
-                                           ng-click="items.splice($index, 1)">
-                        </ion-delete-button>
-                        <ion-reorder-button class="ion-navicon"
-                                            on-reorder="reorderItem(item, $fromIndex, $toIndex)">
-                        </ion-reorder-button>
-
                       </ion-item>
                     </ion-list>
                   </ion-content>

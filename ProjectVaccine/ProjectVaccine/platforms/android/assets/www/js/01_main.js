@@ -18,7 +18,7 @@ mainApp.run(function($ionicPlatform, $cordovaSQLite) {
 
 
         db = window.openDatabase("Profile.db",1,"demo Sqlite test",2000 );
-        $cordovaSQLite.execute(db,"CREATE TABLE test (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, nickname TEXT, firstname TEXT, lastname TEXT, identified INTEGER, date NUMERIC , gender TEXT, bloodtype TEXT,country TEXT, allergic TEXT, vcdata TEXT)");
+        $cordovaSQLite.execute(db,"CREATE TABLE test (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, nickname TEXT, firstname TEXT, lastname TEXT, identified INTEGER, date DATE(YYYY-MM-DD) , gender TEXT, bloodtype TEXT,country TEXT, allergic TEXT, vcdata TEXT)");
 
     });
 })
@@ -121,6 +121,18 @@ mainApp.controller('mainCtrl', ['$scope', '$ionicModal', '$cordovaSQLite', '$ion
             $scope.addDialog.show();
         };
 
+        $scope.saveEmpty = function () {
+            $scope.nickname = '';
+            $scope.firstname = '';
+            $scope.lastname = '';
+            $scope.identified = '';
+            //$scope.date = result.rows[0].date;
+            $scope.gender = '';
+            $scope.bloodtype = '';
+            $scope.country = '';
+            $scope.allergy = '';
+        };
+
         $scope.leaveAddChangeDialog = function () {
             // Remove dialog 
             $scope.addDialog.remove();
@@ -177,8 +189,26 @@ mainApp.controller('mainCtrl', ['$scope', '$ionicModal', '$cordovaSQLite', '$ion
                 });
 
         };
-        $scope.share = function (item) {
-            alert('Share Item: ' + item.id);
+        $scope.edit = function (item, action) {
+            $scope.action = action;
+            var query = "SELECT * FROM test WHERE id = ?";
+            $cordovaSQLite.execute(db, query, [item.id]).then(function (result) {
+                $scope.nickname = result.rows[0].nickname;
+                $scope.firstname = result.rows[0].firstname;
+                $scope.lastname = result.rows[0].lastname;
+                $scope.identified = result.rows[0].identified;
+                //$scope.date = result.rows[0].date;
+                $scope.gender = result.rows[0].gender;
+                $scope.bloodtype = result.rows[0].bloodtype;
+                $scope.country = result.rows[0].country;
+                $scope.allergy = result.rows[0].allergic;
+                $scope.countryDisble = false;
+            }, function (error) {
+                console.log("error" + err);
+            });
+            $scope.addDialog.show();
+            
+
         };
 
         $scope.clicker = function (item) {

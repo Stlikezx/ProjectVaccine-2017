@@ -79,7 +79,7 @@
                     <div class="input-label">
                         Country
                     </div>
-                    <select ng-model="country">
+                    <select ng-model="country" >
                         <option selected>Thailand</option>
                         <option>US</option>
                         <option>England</option>
@@ -91,9 +91,12 @@
                     <input type="text" placeholder="Drug" ng-model="allergy">
                 </label>
 
-                <button class="button button-block button-positive" ng-click="insertProfile(nickname, firstname, lastname, identified, date, gender,bloodtype,country,allergy)">
-                    Done
-                </button>
+                <ion-button ng-show="action == 'add'" ng-init="saveEmpty() " class="button button-block button-positive" ng-click="insertProfile(nickname, firstname, lastname, identified, date, gender,bloodtype,country,allergy)">
+                    Add
+                </ion-button>
+                <ion-button ng-show="action == 'edit'"class="button button-block button-positive" ng-click="editProfile(nickname, firstname, lastname, identified, date, gender,bloodtype,country,allergy)">
+                   Edit
+                </ion-button>
             </div>
 </div>
 </body>
