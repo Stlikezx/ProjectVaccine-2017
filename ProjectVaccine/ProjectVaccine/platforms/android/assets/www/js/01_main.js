@@ -18,7 +18,7 @@ mainApp.run(function($ionicPlatform, $cordovaSQLite) {
 
 
         db = window.openDatabase("Profile.db",1,"demo Sqlite test",2000 );
-        $cordovaSQLite.execute(db,"CREATE TABLE test (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, nickname TEXT, firstname TEXT, lastname TEXT, identified INTEGER, date DATE(YYYY-MM-DD) , gender TEXT, bloodtype TEXT,country TEXT, allergic TEXT, vcdata TEXT)");
+        $cordovaSQLite.execute(db,"CREATE TABLE test (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, nickname TEXT, firstname TEXT, lastname TEXT, identified INTEGER, date DATE , gender TEXT, bloodtype TEXT,country TEXT, allergic TEXT, vcdata TEXT)");
 
     });
 })
@@ -87,8 +87,8 @@ mainApp.controller('googleCtrl', ['$scope', '$firebaseAuth', '$location',
 ]);
 
 
-mainApp.controller('mainCtrl', ['$scope', '$ionicModal', '$cordovaSQLite', '$ionicListDelegate', '$ionicPopup',
-    function ($scope, $ionicModal, $cordovaSQLite, $ionicListDelegate, $ionicPopup) {
+mainApp.controller('mainCtrl', ['$scope', '$ionicModal', '$cordovaSQLite', '$ionicListDelegate', '$ionicPopup','$filter',
+    function ($scope, $ionicModal, $cordovaSQLite, $ionicListDelegate, $ionicPopup, $filter) {
 
         ionic.Platform.ready(function () {
             $scope.loadDataDisplay();
@@ -126,7 +126,7 @@ mainApp.controller('mainCtrl', ['$scope', '$ionicModal', '$cordovaSQLite', '$ion
             $scope.firstname = '';
             $scope.lastname = '';
             $scope.identified = '';
-            //$scope.date = result.rows[0].date;
+            $scope.date = '';
             $scope.gender = '';
             $scope.bloodtype = '';
             $scope.country = '';
@@ -146,6 +146,7 @@ mainApp.controller('mainCtrl', ['$scope', '$ionicModal', '$cordovaSQLite', '$ion
         };
         $scope.insertProfile = function (nickname, firstname, lastname, identified, date, gender, bloodtype, country, allergy) {
 
+            var date = $filter('date')(date, 'yyyy-MM-dd'); 
             var query = "INSERT INTO test (nickname,firstname,lastname,identified,date,gender,bloodtype,country,allergic)VALUES(?,?,?,?,?,?,?,?,?)";
             $cordovaSQLite.execute(db, query, [nickname,firstname,lastname,identified,date, gender, bloodtype, country,allergy]).then(function(res) {
                 console.log("insertId: " + res.insertId);
@@ -197,7 +198,7 @@ mainApp.controller('mainCtrl', ['$scope', '$ionicModal', '$cordovaSQLite', '$ion
                 $scope.firstname = result.rows[0].firstname;
                 $scope.lastname = result.rows[0].lastname;
                 $scope.identified = result.rows[0].identified;
-                //$scope.date = result.rows[0].date;
+                $scope.date = result.rows[0].date;
                 $scope.gender = result.rows[0].gender;
                 $scope.bloodtype = result.rows[0].bloodtype;
                 $scope.country = result.rows[0].country;
