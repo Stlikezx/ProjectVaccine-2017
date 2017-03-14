@@ -198,7 +198,7 @@ mainApp.controller('mainCtrl', ['$scope', '$ionicModal', '$cordovaSQLite', '$ion
                 $scope.firstname = result.rows[0].firstname;
                 $scope.lastname = result.rows[0].lastname;
                 $scope.identified = result.rows[0].identified;
-                $scope.date = result.rows[0].date;
+                $scope.dateShow = result.rows[0].date;
                 $scope.gender = result.rows[0].gender;
                 $scope.bloodtype = result.rows[0].bloodtype;
                 $scope.country = result.rows[0].country;
@@ -215,7 +215,6 @@ mainApp.controller('mainCtrl', ['$scope', '$ionicModal', '$cordovaSQLite', '$ion
         $scope.editProfile = function (nickname, firstname, lastname, identified, date, gender, bloodtype, country, allergy) {
 
             var itemId = window.localStorage.getItem("itemId");
-            console.log(itemId);
             var date = $filter('date')(date, 'yyyy-MM-dd'); 
             var query = "UPDATE test SET nickname = ?,firstname = ? ,lastname = ?,identified = ?,date = ?,gender = ?,bloodtype = ?,country = ?,allergic = ? WHERE id = ?"
             $cordovaSQLite.execute(db, query, [nickname, firstname, lastname, identified, date, gender, bloodtype, country, allergy, itemId]);
@@ -226,6 +225,5 @@ mainApp.controller('mainCtrl', ['$scope', '$ionicModal', '$cordovaSQLite', '$ion
         $scope.clicker = function (item) {
             alert('Clicked: ' + item.id)
         };
-
     }
 ]);

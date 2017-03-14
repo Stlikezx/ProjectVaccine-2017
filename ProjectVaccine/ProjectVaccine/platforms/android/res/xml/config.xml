@@ -28,7 +28,7 @@
     <name>ProjectVaccine</name>
     <description>An Ionic Framework and Cordova project for Visual Studio</description>
     <author email="vscordovatools@microsoft.com" href="http://taco.visualstudio.com">Visual Studio JS Mobile Tooling</author>
-    <content src="02_home.html" />
+    <content src="04_menu.html" />
     <access origin="*" />
     <vs:toolsetVersion xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">6.3.1</vs:toolsetVersion>
     <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />

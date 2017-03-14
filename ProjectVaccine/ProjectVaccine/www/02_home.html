@@ -48,8 +48,17 @@
                 <ion-nav-view name="menuContent">
                   <ion-content class="has-header">
                     <ion-list>
-                      <ion-item ng-repeat="item in alldata" ng-click="clicker(item)">
-                        <p>{{item.nickname}}</p>
+                      <ion-item ng-if="alldata.length == 0">
+                        Press <i  class="ion-ios-plus-outline"></i> to add profile
+                      </ion-item>
+                      <ion-item ng-repeat="item in alldata" ng-init="checkIcon(item)" ng-click="clicker(item)" >
+                        
+                        <div class="item-icon-right">
+                          <i ng-if="item.gender == 'Male'" class="icon ion-male" style="color:#0c60ee"></i>
+                          <i ng-if="item.gender == 'Female'" class="icon ion-female" style="color:#e42112"></i>
+                          <p>{{item.nickname}}</p>
+                        </div>
+                        <!--<i class="ion-man item-icon-right"></i>-->
                         <ion-option-button class="button-assertive ion-trash-a"
                                            ng-click="delete(item)">
                         </ion-option-button>

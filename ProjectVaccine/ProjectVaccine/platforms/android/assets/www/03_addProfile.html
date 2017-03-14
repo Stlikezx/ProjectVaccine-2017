@@ -31,7 +31,8 @@
     <div class="modal">
         <div class="bar bar-header bar-positive">
             <ion-button class="button icon-left ion-chevron-left button-clear" ng-click="leaveAddChangeDialog()">Cancel</ion-button>
-            <h1 class="title">Add Profile</h1>
+            <h1 class="title" ng-show="action == 'add'">Add Profile</h1>
+            <h1 class="title" ng-show="action == 'edit'">Edit Profile</h1>
         </div>
         <ion-content class="has-header">
             <div class="list">
@@ -53,7 +54,7 @@
                 </label>
                 <label class="item item-input item-stacked-label">
                     <span class="input-label">Born</span>
-                    <input type="date" value="{{date}}" ng-model="date">
+                    <input type="date" value="{{dateShow}}" ng-model="date">
                 </label>
                 <label class="item item-input item-select">
                     <div class="input-label">
@@ -75,17 +76,28 @@
                         <option>AB</option>
                     </select>
                 </label>
-                <label class="item item-input item-select">
+                <label class="item item-input item-select" ng-show="action == 'add'">
                     <div class="input-label">
                         Country
                     </div>
-                    <select ng-model="country" >
+                    <select ng-model="country">
                         <option selected>Thailand</option>
                         <option>US</option>
                         <option>England</option>
                         <option>Australia</option>
                     </select>
                 </label>
+              <label class="item item-input item-select" ng-show="action == 'edit'" style="background-color:#dddddd">
+                <div class="input-label">
+                  Country
+                </div>
+                <select ng-model="country" ng-disabled="true" style="background-color:#dddddd">
+                  <option selected>Thailand</option>
+                  <option>US</option>
+                  <option>England</option>
+                  <option>Australia</option>
+                </select>
+              </label>
                 <label class="item item-input item-stacked-label">
                     <span class="input-label">Drug Allergy</span>
                     <input type="text" placeholder="Drug" ng-model="allergy">
