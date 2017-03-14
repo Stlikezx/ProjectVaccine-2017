@@ -203,13 +203,24 @@ mainApp.controller('mainCtrl', ['$scope', '$ionicModal', '$cordovaSQLite', '$ion
                 $scope.bloodtype = result.rows[0].bloodtype;
                 $scope.country = result.rows[0].country;
                 $scope.allergy = result.rows[0].allergic;
-                $scope.countryDisble = false;
+                window.localStorage.setItem("itemId", item.id);
             }, function (error) {
                 console.log("error" + err);
             });
             $scope.addDialog.show();
             
 
+        };
+
+        $scope.editProfile = function (nickname, firstname, lastname, identified, date, gender, bloodtype, country, allergy) {
+
+            var itemId = window.localStorage.getItem("itemId");
+            console.log(itemId);
+            var date = $filter('date')(date, 'yyyy-MM-dd'); 
+            var query = "UPDATE test SET nickname = ?,firstname = ? ,lastname = ?,identified = ?,date = ?,gender = ?,bloodtype = ?,country = ?,allergic = ? WHERE id = ?"
+            $cordovaSQLite.execute(db, query, [nickname, firstname, lastname, identified, date, gender, bloodtype, country, allergy, itemId]);
+            this.leaveAddChangeDialog();
+            $scope.loadDataDisplay();
         };
 
         $scope.clicker = function (item) {
