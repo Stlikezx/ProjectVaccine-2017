@@ -24,29 +24,44 @@ mainApp.run(function($ionicPlatform, $cordovaSQLite) {
 })
 
 
-//mainApp.config(function($stateProvider, $urlRouterProvider) {
-//    $stateProvider
+mainApp.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
-//      .state('app', {
-//          url: "/app",
-//          abstract: true,
-//          templateUrl: "04_menu.html",
-//          controller: 'googleCtrl2'
-//      })
+    $ionicConfigProvider.tabs.position("bottom"); 
 
-//      .state('app.home', {
-//          url: '/home',
-//          views: {
-//              'menuContent': {
-//                  templateUrl: "02_home.html",
-//                  controller: 'googleCtrl2'
-//              }
-//          }
-//      });
+    $stateProvider
+        .state('tabs', {
+            url: '/tab',
+            controller: 'TabsCtrl',
+            templateUrl: '07_tabs.html'
+        })
+        .state('home', {
+            url: '/home',
+            views: {
+                'home': {
+                    templateUrl: '02_home.html',
+                    controller: 'mainCtrl'
+                }
+            }
+        })
+        .state('tabs.menu', {
+            url: '/menu',
+            views: {
+                'menu-tab': {
+                    templateUrl: '05_menu.html'
+                }
+            }
+        })
+        .state('tabs.manage', {
+            url: '/manage',
+            views: {
+                'manage-tab': {
+                    templateUrl: '06_manage.html'
+                }
+            }
+        })
 
-//    // if none of the above states are matched, use this as the fallback
-//    $urlRouterProvider.otherwise('/app/home');
-//});
+    $urlRouterProvider.otherwise('/tab');
+});
 
 var config = {
     apiKey: "AIzaSyCg3zxVD2ykqAhypLZe7rZ4ZjtfnnpEL_k",
@@ -227,3 +242,11 @@ mainApp.controller('mainCtrl', ['$scope', '$ionicModal', '$cordovaSQLite', '$ion
         };
     }
 ]);
+
+mainApp.controller('TabsCtrl', function ($scope, $ionicSideMenuDelegate) {
+
+    $scope.openMenu = function () {
+        $ionicSideMenuDelegate.toggleLeft();
+    }
+
+});

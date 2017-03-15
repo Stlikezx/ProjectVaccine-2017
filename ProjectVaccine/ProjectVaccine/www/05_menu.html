@@ -28,22 +28,14 @@
     <script src="js/01_main.js"></script>
 </head>
 <body ng-app="mainApp">
-    <ion-pane>
-        <ion-header-bar class="bar-stable">
-            <h1 class="title">Login</h1>
-        </ion-header-bar>
-      <ion-content class="has-footer">
-        Some content!
-      </ion-content>
-      <ion-footer-bar align-title="left" class="bar-assertive">
-        <div class="buttons">
-          <button class="button">Left Button</button>
-        </div>
-        <h1 class="title">Title!</h1>
-        <div class="buttons">
-          <button class="button">Right Button</button>
-        </div>
-      </ion-footer-bar>
-    </ion-pane>
+          <ion-view>
+            <ion-side-menus enable-menu-with-back-views="false">
+              <ion-side-menu-content>
+              <ion-content padding="true" class="has-header">
+                <h1 style="text-align: center;">Menu Page</h1>
+              </ion-content>
+                </ion-side-menu-content>
+          </ion-view>
+
 </body>
 </html>
