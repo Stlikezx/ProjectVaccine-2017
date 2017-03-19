@@ -238,15 +238,43 @@ mainApp.controller('mainCtrl', ['$scope', '$ionicModal', '$cordovaSQLite', '$ion
         };
 
         $scope.clicker = function (item) {
-            alert('Clicked: ' + item.id)
+
+            window.localStorage.setItem("itemId", item.id);
+            window.localStorage.setItem("itemNickname", item.nickname);
+            window.location = "04_indexMenu.html";
         };
     }
 ]);
+
+mainApp.controller('indexMenuCtrl', function ($scope, $ionicSideMenuDelegate) {
+
+    var itemId = window.localStorage.getItem("itemId");
+    $scope.itemNickname = window.localStorage.getItem("itemNickname");
+
+});
+
 
 mainApp.controller('TabsCtrl', function ($scope, $ionicSideMenuDelegate) {
 
     $scope.openMenu = function () {
         $ionicSideMenuDelegate.toggleLeft();
+    }
+
+});
+
+mainApp.controller('menuCtrl', function ($scope, $ionicSideMenuDelegate) {
+
+    $scope.clickMenuProfile = function () {
+
+        alert("ok");
+    }
+
+});
+
+mainApp.controller('manageCtrl', function ($scope, $ionicSideMenuDelegate) {
+
+    $scope.clickImport = function () {
+        alert("ok");
     }
 
 });

@@ -31,8 +31,21 @@
           <ion-view>
             <ion-side-menus enable-menu-with-back-views="false">
               <ion-side-menu-content>
-              <ion-content padding="true" class="has-header">
-                <h1 style="text-align: center;">Menu Page</h1>
+              <ion-content padding="true" class="has-header" ng-controller="menuCtrl">
+                <div class="eag-home-container-flex">
+                <div class="eag-home-container">
+                <div class ="row">
+                <div class="col"><button ng-click="clickMenuProfile()" class="button button-stable button-clear eag-home-button"><img src="http://cdn.flaticon.com/png/256/33933.png" ></button><p class="eag-home-label">Profile</p></div>
+                <div class="col"><button class="button button-stable button-clear eag-home-button"><img src="http://cdn.flaticon.com/png/256/33933.png" ></button><p class="eag-home-label">Vaccine Data</p></div>
+
+                </div>
+                <div class ="row">
+                <div class="col"><button class="button button-stable button-clear eag-home-button"><img src="http://cdn.flaticon.com/png/256/33933.png" ></button><p class="eag-home-label">Date</p></div>
+                <div class="col"><button class="button button-stable button-clear eag-home-button"><img src="http://cdn.flaticon.com/png/256/33933.png" ></button><p class="eag-home-label">Recommend Vaccine</p></div>
+
+                </div>
+                </div>
+                </div>
               </ion-content>
                 </ion-side-menu-content>
           </ion-view>

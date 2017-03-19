@@ -2,5 +2,6 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">
     <DebuggerFlavor>SimulateGalaxyNote7</DebuggerFlavor>
+    <AndroidEmulatorID>4B675905-D130-4929-91C8-FC62E9C03A24;VS Emulator 5.7" Marshmallow (6.0.0) XHDPI Phone</AndroidEmulatorID>
   </PropertyGroup>
 </Project>
