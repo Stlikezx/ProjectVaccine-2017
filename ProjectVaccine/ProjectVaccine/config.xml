@@ -3,7 +3,7 @@
   <name>ProjectVaccine</name>
   <description>An Ionic Framework and Cordova project for Visual Studio</description>
   <author email="vscordovatools@microsoft.com" href="http://taco.visualstudio.com">Visual Studio JS Mobile Tooling</author>
-  <content src="02_home.html" />
+  <content src="index.html" />
   <access origin="*" />
   <preference name="webviewbounce" value="false" />
   <preference name="UIWebViewBounce" value="false" />

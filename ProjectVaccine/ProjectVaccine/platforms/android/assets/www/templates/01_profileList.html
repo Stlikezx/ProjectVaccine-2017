@@ -1,0 +1,30 @@
+﻿<ion-view title="Home">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-ios-plus-outline" ng-click="showAddChangeDialog('add')"></button>
+    <button class="button button-icon icon ion-android-notifications" menu-toggle="left"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <ion-list>
+      <ion-item ng-if="alldata.length == 0">
+        Press <i class="ion-ios-plus-outline"></i> to add profile
+      </ion-item>
+      <ion-item ng-repeat="item in alldata" ng-init="checkIcon(item)" href="#/app/menuButton/{{item.nickname}}">
+
+        <div class="item-icon-right">
+          <i ng-if="item.gender == 'Male'" class="icon ion-male" style="color:#0c60ee"></i>
+          <i ng-if="item.gender == 'Female'" class="icon ion-female" style="color:#e42112"></i>
+          <p>{{item.nickname}}</p>
+        </div>
+        <ion-option-button class="button-assertive ion-trash-a"
+                           ng-click="delete(item)">
+        </ion-option-button>
+        <ion-option-button class="button-info ion-edit"
+                           ng-click="edit(item,'edit')">
+        </ion-option-button>
+        <ion-option-button class="button-info ion-ios-download"
+                            ng-click="download()">
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
