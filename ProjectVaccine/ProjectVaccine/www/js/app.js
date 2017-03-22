@@ -40,22 +40,6 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
-  //    .state('app.tabsMenu', {
-  //  url: '/tabsMenu',
-  //  views: {
-  //    'menuContent': {
-  //      templateUrl: 'templates/05_menu.html'
-  //    }
-  //  }
-  // })
-  //    .state('app.tabsManage', {
-  //  url: '/tabsManage',
-  //  views: {
-  //    'menuContent': {
-  //      templateUrl: 'templates/06_manage.html'
-  //    }
-  //  }
-  //})
   .state('app.search', {
     url: '/search',
     views: {
@@ -65,11 +49,12 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.vaccineData', {
+      url: '/vaccineData/:nickname',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/04_vaccineData.html',
+          controller: 'profileData'
         }
       }
     })

@@ -209,7 +209,12 @@
     )
 
 
-    .controller('menuButtonCtrl', function ($scope, $stateParams) {
+.controller('menuButtonCtrl', function ($scope, $stateParams) {
+
+        $scope.nickname = $stateParams.nickname;
+})
+
+.controller('profileData', function ($scope, $stateParams) {
 
         $scope.nickname = $stateParams.nickname;
 });
