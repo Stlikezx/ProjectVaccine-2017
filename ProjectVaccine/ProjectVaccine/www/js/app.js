@@ -49,11 +49,11 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
     }
   })
 
-  .state('app.vaccineData', {
-      url: '/vaccineData/:nickname',
+  .state('app.profileData', {
+      url: '/profileData/:nickname/:id',
       views: {
         'menuContent': {
-          templateUrl: 'templates/04_vaccineData.html',
+          templateUrl: 'templates/04_profileData.html',
           controller: 'profileData'
         }
       }
@@ -69,7 +69,7 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
     })
 
   .state('app.menuButton', {
-    url: '/menuButton/:nickname',
+    url: '/menuButton/:id/:nickname',
     views: {
       'menuContent': {
         templateUrl: 'templates/02_menuButton.html',

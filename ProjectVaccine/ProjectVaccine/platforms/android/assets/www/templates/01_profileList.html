@@ -8,7 +8,7 @@
       <ion-item ng-if="alldata.length == 0">
         Press <i class="ion-ios-plus-outline"></i> to add profile
       </ion-item>
-      <ion-item ng-repeat="item in alldata" ng-init="checkIcon(item)" href="#/app/menuButton/{{item.nickname}}">
+      <ion-item ng-repeat="item in alldata" ng-init="Session(item)" href="#/app/menuButton/{{item.id}}/{{item.nickname}}">
 
         <div class="item-icon-right">
           <i ng-if="item.gender == 'Male'" class="icon ion-male" style="color:#0c60ee"></i>

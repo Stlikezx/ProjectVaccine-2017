@@ -77,6 +77,11 @@
                 $scope.addDialog.show();
             };
 
+            $scope.session = function (item) {
+                console.log(item);
+
+            };
+
             $scope.saveEmpty = function () {
                 $scope.nickname = '';
                 $scope.firstname = '';
@@ -209,12 +214,30 @@
     )
 
 
-.controller('menuButtonCtrl', function ($scope, $stateParams) {
+.controller('menuButtonCtrl', function ($scope, $stateParams, $cordovaSQLite) {
 
-        $scope.nickname = $stateParams.nickname;
+    $scope.id = $stateParams.id;
+    $scope.nickname = $stateParams.nickname;
+    
 })
 
-.controller('profileData', function ($scope, $stateParams) {
+.controller('profileData', function ($scope, $stateParams, $cordovaSQLite,$filter) {
 
-        $scope.nickname = $stateParams.nickname;
+              $scope.nickname = $stateParams.nickname;
+              var id = $stateParams.id;
+
+                var query = "SELECT * FROM test WHERE id = ?";
+                $cordovaSQLite.execute(db, query, [id]).then(function (result) {
+                    $scope.firstname = result.rows[0].firstname;
+                    $scope.lastname = result.rows[0].lastname;
+                    $scope.identified = result.rows[0].identified;
+                    var date = $filter('date')(result.rows[0].date, 'dd-MM-yyyy');
+                    $scope.dateShow = date;
+                    $scope.gender = result.rows[0].gender;
+                    $scope.bloodtype = result.rows[0].bloodtype;
+                    $scope.country = result.rows[0].country;
+                    $scope.allergy = result.rows[0].allergic;
+                }, function (error) {
+                    console.log("error" + err);
+                });
 });
