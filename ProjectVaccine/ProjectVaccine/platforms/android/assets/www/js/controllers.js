@@ -221,7 +221,7 @@
     
 })
 
-.controller('profileData', function ($scope, $stateParams, $cordovaSQLite,$filter) {
+    .controller('profileData', function ($scope, $stateParams, $cordovaSQLite, $filter, $ionicHistory, $state) {
 
               $scope.nickname = $stateParams.nickname;
               var id = $stateParams.id;
@@ -240,4 +240,12 @@
                 }, function (error) {
                     console.log("error" + err);
                 });
+
+                $scope.clearCache = function () {
+
+                    $ionicHistory.nextViewOptions({
+                        disableBack: true
+                    });
+                    $state.go('app.profileList');
+                }
 });
