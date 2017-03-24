@@ -107,15 +107,24 @@
             };
             $scope.insertProfile = function (nickname, firstname, lastname, identified, date, gender, bloodtype, country, allergy) {
 
-                var date = $filter('date')(date, 'yyyy-MM-dd');
-                var query = "INSERT INTO test (nickname,firstname,lastname,identified,date,gender,bloodtype,country,allergic)VALUES(?,?,?,?,?,?,?,?,?)";
-                $cordovaSQLite.execute(db, query, [nickname, firstname, lastname, identified, date, gender, bloodtype, country, allergy]).then(function (res) {
-                    console.log("insertId: " + res.insertId);
-                }, function (err) {
-                    console.error(err);
-                });
-                $scope.loadDataDisplay();
-                this.leaveAddChangeDialog();
+                console.log(country);
+                if (country == "")
+                {
+                    alert('You must choose country');
+                }
+                else
+                {
+                    var date = $filter('date')(date, 'yyyy-MM-dd');
+                    var query = "INSERT INTO test (nickname,firstname,lastname,identified,date,gender,bloodtype,country,allergic)VALUES(?,?,?,?,?,?,?,?,?)";
+                    $cordovaSQLite.execute(db, query, [nickname, firstname, lastname, identified, date, gender, bloodtype, country, allergy]).then(function (res) {
+                        console.log("insertId: " + res.insertId);
+                    }, function (err) {
+                        console.error(err);
+                    });
+                    $scope.loadDataDisplay();
+                    this.leaveAddChangeDialog();         
+                }
+
             }
 
             $scope.loadDataDisplay = function () {
@@ -256,32 +265,126 @@
     $scope.nickname = $stateParams.nickname;
     var id = $stateParams.id;
 
-    $scope.itemGrps = [
-        {
-            title: 'group1',
-            items:
-            [{ title: 'g1item1' },
-            { title: 'g1item2' },
-            { title: 'g1item3' },
-            { title: 'g1item4' },
-            { title: 'g1item5' }]
-        },
-        {
-            title: 'group2',
-            items:
-            [{ title: 'g2item1' },
-            { title: 'g2item2' },
-            { title: 'g2item3' }]
-        },
-        {
-            title: 'group3',
-            items:
-            [{ title: 'g3item1' },
-            { title: 'g3item2' },
-            { title: 'g3item3' },
-            { title: 'g3item4' }]
-        }
-    ];
+      var query = "SELECT * FROM test WHERE id = ?";
+                $cordovaSQLite.execute(db, query, [id]).then(function (result) {
+
+                    var country = result.rows[0].country;
+
+                    if (country == 'Thailand')
+                    {
+                        $scope.itemGrps = [
+                            {
+                                title: 'newborn',
+                                items:
+                                [{ vid: 'BCG',have : false },
+                                { vid: 'HBV1',have : false }]
+                            },
+                            {
+                                title: '1 month',
+                                items:
+                                [{ vid: 'HBV2', have: false }]
+                            },
+                            {
+                                title: '2 month',
+                                items:
+                                [{ vid: 'DTwP-HB1', have: false },
+                                { vid: 'OPV1', have: false }]
+                            }
+                        ];
+                    }
+                    else if (country == 'US')
+                    {
+                        $scope.itemGrps = [
+                            {
+                                title: 'US',
+                                items:
+                                [{ title: 'g1item1' },
+                                { title: 'g1item2' },
+                                { title: 'g1item3' },
+                                { title: 'g1item4' },
+                                { title: 'g1item5' }]
+                            },
+                            {
+                                title: 'group2',
+                                items:
+                                [{ title: 'g2item1' },
+                                { title: 'g2item2' },
+                                { title: 'g2item3' }]
+                            },
+                            {
+                                title: 'group3',
+                                items:
+                                [{ title: 'g3item1' },
+                                { title: 'g3item2' },
+                                { title: 'g3item3' },
+                                { title: 'g3item4' }]
+                            }
+                        ];
+                    }
+                    else if (country == 'England') {
+                        $scope.itemGrps = [
+                            {
+                                title: 'England',
+                                items:
+                                [{ title: 'g1item1' },
+                                { title: 'g1item2' },
+                                { title: 'g1item3' },
+                                { title: 'g1item4' },
+                                { title: 'g1item5' }]
+                            },
+                            {
+                                title: 'group2',
+                                items:
+                                [{ title: 'g2item1' },
+                                { title: 'g2item2' },
+                                { title: 'g2item3' }]
+                            },
+                            {
+                                title: 'group3',
+                                items:
+                                [{ title: 'g3item1' },
+                                { title: 'g3item2' },
+                                { title: 'g3item3' },
+                                { title: 'g3item4' }]
+                            }
+                        ];
+                    }
+                    else if (country == 'Australia') {
+                        $scope.itemGrps = [
+                            {
+                                title: 'Australia',
+                                items:
+                                [{ title: 'g1item1' },
+                                { title: 'g1item2' },
+                                { title: 'g1item3' },
+                                { title: 'g1item4' },
+                                { title: 'g1item5' }]
+                            },
+                            {
+                                title: 'group2',
+                                items:
+                                [{ title: 'g2item1' },
+                                { title: 'g2item2' },
+                                { title: 'g2item3' }]
+                            },
+                            {
+                                title: 'group3',
+                                items:
+                                [{ title: 'g3item1' },
+                                { title: 'g3item2' },
+                                { title: 'g3item3' },
+                                { title: 'g3item4' }]
+                            }
+                        ];
+                    }
+                   
+
+
+                }, function (error) {
+                    console.log("error" + err);
+                });
+    
+   
 
     $scope.checkid = function (item) {
 

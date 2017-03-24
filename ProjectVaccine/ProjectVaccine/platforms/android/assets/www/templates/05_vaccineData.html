@@ -10,13 +10,12 @@
           {{itemGrp.title}}
         </div>
 
-        <ion-item ng-repeat="item in itemGrp.items" ng-click="checkid(item.id)">
-          {{ item.title }}
-          <span class="item-note">
-            some value
-          </span>
-          <ion-option-button class="button-positive">Edit</ion-option-button>
-          <ion-option-button class="button-assertive icon ion-trash-a"></ion-option-button>
+        <ion-item ng-repeat="item in itemGrp.items" ng-click="checkid(item.title)">
+          <div class="item-icon-right">
+            <p>{{item.title}}</p>
+            <i ng-if="item.have == true " class="icon ion-ios-checkmark"></i>
+            <i ng-if="item.have == false " class="icon ion-ios-checkmark-outline"></i>
+          </div>
         </ion-item>
 
       </div>
