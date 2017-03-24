@@ -248,4 +248,51 @@
                     });
                     $state.go('app.profileList');
                 }
+})
+
+
+ .controller('vaccineData', function ($scope, $stateParams, $cordovaSQLite, $filter, $ionicHistory, $state) {
+
+    $scope.nickname = $stateParams.nickname;
+    var id = $stateParams.id;
+
+    $scope.itemGrps = [
+        {
+            title: 'group1',
+            items:
+            [{ title: 'g1item1' },
+            { title: 'g1item2' },
+            { title: 'g1item3' },
+            { title: 'g1item4' },
+            { title: 'g1item5' }]
+        },
+        {
+            title: 'group2',
+            items:
+            [{ title: 'g2item1' },
+            { title: 'g2item2' },
+            { title: 'g2item3' }]
+        },
+        {
+            title: 'group3',
+            items:
+            [{ title: 'g3item1' },
+            { title: 'g3item2' },
+            { title: 'g3item3' },
+            { title: 'g3item4' }]
+        }
+    ];
+
+    $scope.checkid = function (item) {
+
+        alert(item);
+
+    }
+    $scope.clearCache = function () {
+
+        $ionicHistory.nextViewOptions({
+            disableBack: true
+        });
+        $state.go('app.profileList');
+    }
 });

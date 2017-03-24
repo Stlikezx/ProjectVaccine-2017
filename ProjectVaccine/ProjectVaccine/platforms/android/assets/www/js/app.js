@@ -40,11 +40,12 @@ angular.module('starter', ['ionic', 'starter.controllers','ngCordova'])
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
-  .state('app.search', {
-    url: '/search',
+  .state('app.vaccineData', {
+    url: '/vaccineData/:nickname/:id',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+          templateUrl: 'templates/05_vaccineData.html',
+          controller: 'vaccineData'
       }
     }
   })
