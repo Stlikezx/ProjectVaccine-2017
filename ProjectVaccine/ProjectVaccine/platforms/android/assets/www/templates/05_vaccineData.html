@@ -10,11 +10,11 @@
           {{itemGrp.title}}
         </div>
 
-        <ion-item ng-repeat="item in itemGrp.items" ng-click="checkid(item.title)">
+        <ion-item  ng-repeat="item in itemGrp.items" ng-click="checkid(item.vid)">
           <div class="item-icon-right">
-            <p>{{item.title}}</p>
-            <i ng-if="item.have == true " class="icon ion-ios-checkmark"></i>
-            <i ng-if="item.have == false " class="icon ion-ios-checkmark-outline"></i>
+            <p>{{item.vid}}</p>
+            <i ng-if="item.status == true " class="icon ion-ios-checkmark"></i>
+            <i ng-if="item.status == false " class="icon ion-ios-checkmark-outline"></i>
           </div>
         </ion-item>
 

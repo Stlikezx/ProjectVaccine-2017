@@ -274,51 +274,146 @@
                     {
                         $scope.itemGrps = [
                             {
-                                title: 'newborn',
+                                index: 1,
+                                title: 'Birth',
                                 items:
-                                [{ vid: 'BCG',have : false },
-                                { vid: 'HBV1',have : false }]
+                                [{ vid: 'BCG',vcname:'BCG',location:'',date:'',vcdescription:'',range:0, status : true },
+                                { vid: 'HBV1',vcname:'HBV 1st',location:'',date:'',vcdescription:'',range:0, status : false }]
                             },
                             {
+                                index: 2,
                                 title: '1 month',
                                 items:
-                                [{ vid: 'HBV2', have: false }]
+                                [{ vid: 'HBV2',vcname:'HBV 2st',location:'',date:'',vcdescription:'',range:30, status : true }]
                             },
                             {
+                                index: 3,
                                 title: '2 month',
                                 items:
-                                [{ vid: 'DTwP-HB1', have: false },
-                                { vid: 'OPV1', have: false }]
-                            }
+                                [{ vid: 'DTwP-HB1',vcname:'DTwP-HB 1st',location:'',date:'',vcdescription:'',range:60, status : false },
+                                { vid: 'OPV1',vcname:'OPV 1st',location:'',date:'',vcdescription:'',range:60, status : true }]
+                            },
+                            {
+                                index: 4,
+                                title: '4 month',
+                                items:
+                                [{ vid: 'DTwP-HB2',vcname:'DTwP-HB 2nd',location:'',date:'',vcdescription:'',range:120, status : false },
+                                { vid: 'OPV2+IPV',vcname:'OPV 2nd + IPV',location:'',date:'',vcdescription:'',range:120, status : false }]
+                            },
+                            {
+                                index: 5,
+                                title: '6 month',
+                                items:
+                                [{ vid: 'DTwP-HB3', vcname:'DTwP-HB 3rd',location:'',date:'',vcdescription:'',range:180, status : false },
+                                { vid: 'OPV3', vcname:'OPV 3rd',location:'',date:'',vcdescription:'',range:180, status : false }]
+                            },
+                            {
+                                index: 6,
+                                title: '9 month',
+                                items:
+                                [{ vid: 'MRR1', vcname: 'MRR 1st', location: '', date: '', vcdescription: '',range:360, status: false },
+                                { vid: 'JE1', vcname: 'JE 1st', location: '', date: '', vcdescription: '',range:360, status: false }]
+                            },
+                            {
+                                index: 7,
+                                title: '18 month',
+                                items:
+                                [{ vid: 'DTwPA1', vcname: 'DTwP Active 1st', location: '', date: '', vcdescription: '',range:540, status: false },
+                                { vid: 'OPVA1', vcname: 'OPV Active 1st', location: '', date: '', vcdescription: '',range:540, status: false }]
+                            },
+                            {
+                                index: 8,
+                                title: '2 year 6 month',
+                                items:
+                                [{ vid: 'MRR2', vcname: 'MRR 1st', location: '', date: '', vcdescription: '',range:900, status: false },
+                                { vid: 'JE2', vcname: 'JE 2nd', location: '', date: '', vcdescription: '',range:900, status: false }]
+                            },
+                            {
+                                index: 9,
+                                title: '4 year - 6 year',
+                                items:
+                                [{ vid: 'DTwPA2', vcname: 'DTwP Active 2nd', location: '', date: '', vcdescription: '',range:2160, status: false },
+                                { vid: 'OPVA2', vcname: 'OPV Active 2nd', location: '', date: '', vcdescription: '',range:2160, status: false }]
+                            },
+                            {
+                                index: 10,
+                                title: '11 year - 12 year',
+                                items:
+                                [{ vid: 'Td', vcname: 'TD', location: '', date: '', vcdescription: '',range:4320, status: false },]
+                            },
                         ];
                     }
                     else if (country == 'US')
                     {
                         $scope.itemGrps = [
                             {
-                                title: 'US',
+                                index: 1,
+                                title: 'Birth',
                                 items:
-                                [{ title: 'g1item1' },
-                                { title: 'g1item2' },
-                                { title: 'g1item3' },
-                                { title: 'g1item4' },
-                                { title: 'g1item5' }]
+                                [{ vid: 'BCG', vcname: 'BCG', location: '', date: '', vcdescription: '', status: true },
+                                { vid: 'HBV1', vcname: 'HBV 1st', location: '', date: '', vcdescription: '', status: false }]
                             },
                             {
-                                title: 'group2',
+                                index: 2,
+                                title: '1 month',
                                 items:
-                                [{ title: 'g2item1' },
-                                { title: 'g2item2' },
-                                { title: 'g2item3' }]
+                                [{ vid: 'HBV2', vcname: 'HBV 2st', location: '', date: '', vcdescription: '', status: true }]
                             },
                             {
-                                title: 'group3',
+                                index: 3,
+                                title: '2 month',
                                 items:
-                                [{ title: 'g3item1' },
-                                { title: 'g3item2' },
-                                { title: 'g3item3' },
-                                { title: 'g3item4' }]
-                            }
+                                [{ vid: 'DTwP-HB1', vcname: 'DTwP-HB 1st', location: '', date: '', vcdescription: '', status: false },
+                                { vid: 'OPV1', vcname: 'OPV 1st', location: '', date: '', vcdescription: '', status: true }]
+                            },
+                            {
+                                index: 4,
+                                title: '4 month',
+                                items:
+                                [{ vid: 'DTwP-HB2', vcname: 'DTwP-HB 2nd', location: '', date: '', vcdescription: '', status: false },
+                                { vid: 'OPV2+IPV', vcname: 'OPV 2nd + IPV', location: '', date: '', vcdescription: '', status: false }]
+                            },
+                            {
+                                index: 5,
+                                title: '6 month',
+                                items:
+                                [{ vid: 'DTwP-HB3', vcname: 'DTwP-HB 3rd', location: '', date: '', vcdescription: '', status: false },
+                                { vid: 'OPV3', vcname: 'OPV 3rd', location: '', date: '', vcdescription: '', status: false }]
+                            },
+                            {
+                                index: 6,
+                                title: '9 month - 12 month',
+                                items:
+                                [{ vid: 'MRR1', vcname: 'MRR 1st', location: '', date: '', vcdescription: '', status: false },
+                                { vid: 'JE1', vcname: 'JE 1st', location: '', date: '', vcdescription: '', status: false }]
+                            },
+                            {
+                                index: 7,
+                                title: '18 month',
+                                items:
+                                [{ vid: 'DTwPA1', vcname: 'DTwP Active 1st', location: '', date: '', vcdescription: '', status: false },
+                                { vid: 'OPVA1', vcname: 'OPV Active 1st', location: '', date: '', vcdescription: '', status: false }]
+                            },
+                            {
+                                index: 8,
+                                title: '2 year 6 month',
+                                items:
+                                [{ vid: 'MRR2', vcname: 'MRR 1st', location: '', date: '', vcdescription: '', status: false },
+                                { vid: 'JE2', vcname: 'JE 2nd', location: '', date: '', vcdescription: '', status: false }]
+                            },
+                            {
+                                index: 9,
+                                title: '4 year - 6 year',
+                                items:
+                                [{ vid: 'DTwPA2', vcname: 'DTwP Active 2nd', location: '', date: '', vcdescription: '', status: false },
+                                { vid: 'OPVA2', vcname: 'OPV Active 2nd', location: '', date: '', vcdescription: '', status: false }]
+                            },
+                            {
+                                index: 10,
+                                title: '11 year - 12 year',
+                                items:
+                                [{ vid: 'Td', vcname: 'TD', location: '', date: '', vcdescription: '', status: false },]
+                            },
                         ];
                     }
                     else if (country == 'England') {
