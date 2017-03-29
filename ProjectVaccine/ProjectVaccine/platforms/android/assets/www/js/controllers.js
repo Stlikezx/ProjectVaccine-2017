@@ -269,10 +269,12 @@
                 $cordovaSQLite.execute(db, query, [id]).then(function (result) {
 
                     var country = result.rows[0].country;
+                    id = result.rows[0].id;
+                    var vcdata = result.rows[0].vcdata;
 
-                    if (country == 'Thailand')
+                    if (country == 'Thailand' && vcdata=='')
                     {
-                        $scope.itemGrps = [
+                        var itemGrps = [
                             {
                                 index: 1,
                                 title: 'Birth',
@@ -342,8 +344,13 @@
                                 [{ vid: 'Td', vcname: 'TD', location: '', date: '', vcdescription: '',range:4320, status: false },]
                             },
                         ];
+
+                        var JsonStringVaccine = JSON.stringify(itemGrps, null, '\t');
+                        var query = "UPDATE test SET vcdata = ? WHERE id = ?";
+                        $cordovaSQLite.execute(db, query, [JsonStringVaccine,id]);
+
                     }
-                    else if (country == 'US')
+                    else if (country == 'US' && vcdata == '')
                     {
                         $scope.itemGrps = [
                             {
@@ -416,7 +423,7 @@
                             },
                         ];
                     }
-                    else if (country == 'England') {
+                    else if (country == 'England' && vcdata == '') {
                         $scope.itemGrps = [
                             {
                                 title: 'England',
@@ -444,7 +451,7 @@
                             }
                         ];
                     }
-                    else if (country == 'Australia') {
+                    else if (country == 'Australia' && vcdata == '') {
                         $scope.itemGrps = [
                             {
                                 title: 'Australia',
@@ -472,6 +479,9 @@
                             }
                         ];
                     }
+                    else {
+                        $scope.loadJsondataVaccine();
+                    }
                    
 
 
@@ -480,6 +490,20 @@
                 });
     
    
+
+    $scope.loadJsondataVaccine = function () {
+
+        var query = "SELECT vcdata FROM test WHERE id = ? ";
+        $cordovaSQLite.execute(db,query,[id]).then(function (result) {
+
+            $scope.itemGrps = result.rows[0].vcdata;
+            console.log($scope.itemGrps.title);
+        }, function (error) {
+            console.log("error" + err);
+        });
+
+     }
+
 
     $scope.checkid = function (item) {
 
