@@ -272,7 +272,7 @@
                     id = result.rows[0].id;
                     var vcdata = result.rows[0].vcdata;
 
-                    if (country == 'Thailand' && vcdata=='')
+                    if (country == 'Thailand' && vcdata == null)
                     {
                         var itemGrps = {
                             vaccine: [
@@ -280,21 +280,21 @@
                                     index: 1,
                                     title: 'Birth',
                                     items:
-                                    [{ vid: 'BCG', vcname: 'BCG', location: '', date: '', vcdescription: '', range: 0, status: true },
+                                    [{ vid: 'BCG', vcname: 'BCG', location: '', date: '', vcdescription: '', range: 0, status: false },
                                     { vid: 'HBV1', vcname: 'HBV 1st', location: '', date: '', vcdescription: '', range: 0, status: false }]
                                 },
                                 {
                                     index: 2,
                                     title: '1 month',
                                     items:
-                                    [{ vid: 'HBV2', vcname: 'HBV 2st', location: '', date: '', vcdescription: '', range: 30, status: true }]
+                                    [{ vid: 'HBV2', vcname: 'HBV 2st', location: '', date: '', vcdescription: '', range: 30, status: false }]
                                 },
                                 {
                                     index: 3,
                                     title: '2 month',
                                     items:
                                     [{ vid: 'DTwP-HB1', vcname: 'DTwP-HB 1st', location: '', date: '', vcdescription: '', range: 60, status: false },
-                                    { vid: 'OPV1', vcname: 'OPV 1st', location: '', date: '', vcdescription: '', range: 60, status: true }]
+                                    { vid: 'OPV1', vcname: 'OPV 1st', location: '', date: '', vcdescription: '', range: 60, status: false }]
                                 },
                                 {
                                     index: 4,
@@ -349,7 +349,8 @@
 
                         var JsonStringVaccine = JSON.stringify(itemGrps, null, '\t');
                         var query = "UPDATE test SET vcdata = ? WHERE id = ?";
-                        $cordovaSQLite.execute(db, query, [JsonStringVaccine,id]);
+                        $cordovaSQLite.execute(db, query, [JsonStringVaccine, id]);
+                        $scope.loadJsondataVaccine();
 
                     }
                     else if (country == 'US' && vcdata == '')
@@ -359,21 +360,21 @@
                                 index: 1,
                                 title: 'Birth',
                                 items:
-                                [{ vid: 'BCG', vcname: 'BCG', location: '', date: '', vcdescription: '', status: true },
+                                [{ vid: 'BCG', vcname: 'BCG', location: '', date: '', vcdescription: '', status: false },
                                 { vid: 'HBV1', vcname: 'HBV 1st', location: '', date: '', vcdescription: '', status: false }]
                             },
                             {
                                 index: 2,
                                 title: '1 month',
                                 items:
-                                [{ vid: 'HBV2', vcname: 'HBV 2st', location: '', date: '', vcdescription: '', status: true }]
+                                [{ vid: 'HBV2', vcname: 'HBV 2st', location: '', date: '', vcdescription: '', status: false }]
                             },
                             {
                                 index: 3,
                                 title: '2 month',
                                 items:
                                 [{ vid: 'DTwP-HB1', vcname: 'DTwP-HB 1st', location: '', date: '', vcdescription: '', status: false },
-                                { vid: 'OPV1', vcname: 'OPV 1st', location: '', date: '', vcdescription: '', status: true }]
+                                { vid: 'OPV1', vcname: 'OPV 1st', location: '', date: '', vcdescription: '', status: false }]
                             },
                             {
                                 index: 4,
@@ -499,7 +500,7 @@
         $cordovaSQLite.execute(db,query,[id]).then(function (result) {
 
             var json = JSON.parse(result.rows[0].vcdata);
-            $scope.ocw = json;
+            $scope.vcdata = json;
         }, function (error) {
             console.log("error" + err);
         });
@@ -509,7 +510,27 @@
 
     $scope.checkid = function (item) {
 
-        alert(item);
+        var query = "SELECT vcdata FROM test WHERE id = ? ";
+        $cordovaSQLite.execute(db, query, [id]).then(function (result) {
+
+            var json = JSON.parse(result.rows[0].vcdata);
+
+            for (i = 0; i <= json.vaccine.length; i++)
+            {
+                json.vaccine[i].items.length;
+                for (j = 0; j <= json.vaccine[i].items.length; j++) {
+                    if (item.vid == json.vaccine[i].items[j].vid) {
+                        alert(item.vid);
+                    }
+                    
+                }
+
+            }
+
+        }, function (error) {
+            console.log("error" + err);
+        });
+
 
     }
     $scope.clearCache = function () {

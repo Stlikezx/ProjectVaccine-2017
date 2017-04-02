@@ -4,13 +4,13 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <ion-list>
-      <div ng-repeat="vc in ocw.vaccine track by $index">
+      <div ng-repeat="vc in vcdata.vaccine track by $index">
 
         <div class="item item-divider">
           {{vc.title}}
         </div>
 
-        <ion-item  ng-repeat="item in vc.items " ng-click="checkid(item.vid)">
+        <ion-item  ng-repeat="item in vc.items " ng-click="checkid(item)">
           <div class="item-icon-right">
             <p>{{item.vid}}</p>
             <i ng-if="item.status == true " class="icon ion-ios-checkmark"></i>
