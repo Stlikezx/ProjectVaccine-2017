@@ -260,10 +260,18 @@
 })
 
 
- .controller('vaccineData', function ($scope, $stateParams, $cordovaSQLite, $filter, $ionicHistory, $state) {
+    .controller('vaccineData', function ($scope,$ionicModal,$stateParams, $cordovaSQLite, $filter, $ionicHistory, $state) {
 
     $scope.nickname = $stateParams.nickname;
     var id = $stateParams.id;
+
+    $ionicModal.fromTemplateUrl('templates/06_addVaccineData.html', function (modal) {
+        $scope.addVaccineData = modal;
+    },
+        {
+            scope: $scope,
+            animation: 'slide-in-up'
+        });
 
       var query = "SELECT * FROM test WHERE id = ?";
                 $cordovaSQLite.execute(db, query, [id]).then(function (result) {
@@ -515,15 +523,13 @@
 
             var json = JSON.parse(result.rows[0].vcdata);
 
-            for (i = 0; i <= json.vaccine.length; i++)
+            for (i = 0; i < json.vaccine.length; i++)
             {
-                json.vaccine[i].items.length;
-                for (j = 0; j <= json.vaccine[i].items.length; j++) {
+
+                for (j = 0; j < json.vaccine[i].items.length; j++) {
                     if (item.vid == json.vaccine[i].items[j].vid) {
-                        alert(item.vid);
-                    }
-                    else {
-                        alert('ok');
+                        $scope.vcname = item.vcname;
+                        $scope.addVaccineData.show();
                     }
                     
                 }
@@ -536,6 +542,19 @@
 
 
     }
+
+    $scope.leaveAddVaccineData = function () {
+        // Remove dialog 
+        $scope.addVaccineData.remove();
+        // Reload modal template to have cleared form
+        $ionicModal.fromTemplateUrl('templates/06_addVaccineData.html', function (modal) {
+            $scope.addVaccineData = modal;
+        }, {
+                scope: $scope,
+                animation: 'slide-in-up'
+            });
+    };
+
     $scope.clearCache = function () {
 
         $ionicHistory.nextViewOptions({
