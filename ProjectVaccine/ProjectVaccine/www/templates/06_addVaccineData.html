@@ -36,77 +36,20 @@
         <ion-content class="has-header">
             <div class="list">
                 <label class="item item-input item-stacked-label">
-                    <span class="input-label">Nick Name</span>
-                    <input type="text" placeholder="" ng-model="nickname">
+                    <span class="input-label">Location</span>
+                    <input type="text" placeholder="" ng-model="location">
                 </label>
                 <label class="item item-input item-stacked-label">
-                    <span class="input-label">First Name</span>
-                    <input type="text" placeholder="" ng-model="firstname">
-                </label>
-                <label class="item item-input item-stacked-label">
-                    <span class="input-label">Last Name</span>
-                    <input type="text" placeholder="" ng-model="lastname">
-                </label>
-                <label class="item item-input item-stacked-label">
-                    <span class="input-label">Identification Number</span>
-                    <input type="number" placeholder="x-xxxx-xxxxx-xx-x" ng-model="identified">
-                </label>
-                <label class="item item-input item-stacked-label">
-                    <span class="input-label">Born</span>
+                    <span class="input-label">date</span>
                     <input type="date" value="{{dateShow}}" ng-model="date">
                 </label>
-                <label class="item item-input item-select">
-                    <div class="input-label">
-                        Gender
-                    </div>
-                    <select ng-model="gender">
-                        <option selected>Male</option>
-                        <option>Female</option>
-                    </select>
-                </label>
-                <label class="item item-input item-select">
-                    <div class="input-label">
-                        Blood Group
-                    </div>
-                    <select ng-model="bloodtype">
-                        <option selected>O</option>
-                        <option>A</option>
-                        <option>B</option>
-                        <option>AB</option>
-                    </select>
-                </label>
-                <label class="item item-input item-select" ng-show="action == 'add'">
-                    <div class="input-label">
-                        Country
-                    </div>
-                    <select ng-model="country">
-                        <option selected>Thailand</option>
-                        <option>US</option>
-                        <option>England</option>
-                        <option>Australia</option>
-                    </select>
-                </label>
-              <label class="item item-input item-select" ng-show="action == 'edit'" style="background-color:#dddddd">
-                <div class="input-label">
-                  Country
-                </div>
-                <select ng-model="country" ng-disabled="true" style="background-color:#dddddd">
-                  <option selected>Thailand</option>
-                  <option>US</option>
-                  <option>England</option>
-                  <option>Australia</option>
-                </select>
-              </label>
                 <label class="item item-input item-stacked-label">
-                    <span class="input-label">Drug Allergy</span>
-                    <input type="text" placeholder="Drug" ng-model="allergy">
+                    <span class="input-label">Vaccine Description</span>
+                    <input type="text" placeholder="Drug" ng-model="vcDescription">
                 </label>
 
-                <ion-button ng-show="action == 'add'" ng-init="saveEmpty() " class="button button-block button-positive" ng-click="insertProfile(nickname, firstname, lastname, identified, date, gender,bloodtype,country,allergy)">
-                    Add
-                </ion-button>
-                <ion-button ng-show="action == 'edit'"class="button button-block button-positive" ng-click="editProfile(nickname, firstname, lastname, identified, date, gender,bloodtype,country,allergy)">
-                   Edit
+                <ion-button class="button button-block button-positive" ng-click="insertVaccinedata(location,date,vcDescription)">
+                    Done
                 </ion-button>
             </div>
 </div>

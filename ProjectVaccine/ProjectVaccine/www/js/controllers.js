@@ -516,7 +516,7 @@
      }
 
 
-    $scope.checkid = function (item) {
+    $scope.clickVcdata = function (item) {
 
         var query = "SELECT vcdata FROM test WHERE id = ? ";
         $cordovaSQLite.execute(db, query, [id]).then(function (result) {
@@ -528,6 +528,7 @@
 
                 for (j = 0; j < json.vaccine[i].items.length; j++) {
                     if (item.vid == json.vaccine[i].items[j].vid) {
+                        window.localStorage.setItem("vid", item.vid);
                         $scope.vcname = item.vcname;
                         $scope.addVaccineData.show();
                     }
@@ -540,6 +541,41 @@
             console.log("error" + err);
         });
 
+
+    }
+
+    $scope.insertVaccinedata = function (location, date, vcDescription) {
+
+        var vid = window.localStorage.getItem("vid");
+
+        var query = "SELECT vcdata FROM test WHERE id = ? ";
+        $cordovaSQLite.execute(db, query, [id]).then(function (result) {
+
+            var json = JSON.parse(result.rows[0].vcdata);
+
+            for (i = 0; i < json.vaccine.length; i++) {
+
+                for (j = 0; j < json.vaccine[i].items.length; j++) {
+                    if (vid == json.vaccine[i].items[j].vid) {
+                        json.vaccine[i].items[j].location = location;
+                        json.vaccine[i].items[j].date = date;
+                        json.vaccine[i].items[j].vcdescription = vcDescription;
+                        json.vaccine[i].items[j].status = true;
+                    }
+
+                }
+
+            }
+
+            var jsonVaccine = JSON.stringify(json, null, '\t');
+            console.log(jsonVaccine);
+            var query = "UPDATE test SET vcdata = ? WHERE id = ?";
+            $cordovaSQLite.execute(db, query, [jsonVaccine, id]);
+            $scope.leaveAddVaccineData();
+            $scope.loadJsondataVaccine();
+        }, function (error) {
+            console.log("error" + err);
+        });
 
     }
 
