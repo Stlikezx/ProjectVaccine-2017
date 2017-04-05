@@ -87,7 +87,7 @@
                 $scope.firstname = '';
                 $scope.lastname = '';
                 $scope.identified = '';
-                $scope.date = '';
+                $scope.dateShow = '';
                 $scope.gender = '';
                 $scope.bloodtype = '';
                 $scope.country = '';
@@ -527,10 +527,24 @@
             {
 
                 for (j = 0; j < json.vaccine[i].items.length; j++) {
-                    if (item.vid == json.vaccine[i].items[j].vid) {
+                    if (item.vid == json.vaccine[i].items[j].vid && item.status == false) {
                         window.localStorage.setItem("vid", item.vid);
                         $scope.vcname = item.vcname;
+                        var action = 'insertVaccineData';
                         $scope.addVaccineData.show();
+                    }
+                    else if (item.vid == json.vaccine[i].items[j].vid && item.status == true) {
+
+                        var dateVaccine = new Date(json.vaccine[i].items[j].date);
+                        var date = $filter('date')(dateVaccine, 'dd-MM-yyyy');
+
+                        window.localStorage.setItem("vid", item.vid);
+                        $scope.location = json.vaccine[i].items[j].location;
+                        $scope.dateShowVaccineData = date;
+                        $scope.vcDescription = json.vaccine[i].items[j].vcdescription;
+                        var action = 'editVaccineData';
+                        $scope.addVaccineData.show();
+
                     }
                     
                 }
@@ -544,7 +558,7 @@
 
     }
 
-    $scope.insertVaccinedata = function (location, date, vcDescription) {
+    $scope.insertVaccinedata = function (location, dateVaccine, vcDescription) {
 
         var vid = window.localStorage.getItem("vid");
 
@@ -557,6 +571,8 @@
 
                 for (j = 0; j < json.vaccine[i].items.length; j++) {
                     if (vid == json.vaccine[i].items[j].vid) {
+
+                        var date = $filter('date')(dateVaccine, 'yyyy-MM-dd');
                         json.vaccine[i].items[j].location = location;
                         json.vaccine[i].items[j].date = date;
                         json.vaccine[i].items[j].vcdescription = vcDescription;
@@ -581,6 +597,11 @@
 
     $scope.leaveAddVaccineData = function () {
         // Remove dialog 
+
+        $scope.location = '';
+        $scope.dateShow = '';
+        $scope.vcDescription = '';
+
         $scope.addVaccineData.remove();
         // Reload modal template to have cleared form
         $ionicModal.fromTemplateUrl('templates/06_addVaccineData.html', function (modal) {

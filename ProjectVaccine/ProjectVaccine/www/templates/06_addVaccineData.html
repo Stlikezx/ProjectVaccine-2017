@@ -41,14 +41,14 @@
                 </label>
                 <label class="item item-input item-stacked-label">
                     <span class="input-label">date</span>
-                    <input type="date" value="{{dateShow}}" ng-model="date">
+                    <input type="date" value="{{dateShowVaccineData}}" ng-model="dateVaccine">
                 </label>
                 <label class="item item-input item-stacked-label">
                     <span class="input-label">Vaccine Description</span>
                     <input type="text" placeholder="Drug" ng-model="vcDescription">
                 </label>
 
-                <ion-button class="button button-block button-positive" ng-click="insertVaccinedata(location,date,vcDescription)">
+                <ion-button class="button button-block button-positive" ng-click="insertVaccinedata(location,dateVaccine,vcDescription)">
                     Done
                 </ion-button>
             </div>
