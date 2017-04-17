@@ -48,8 +48,11 @@
                     <input type="text" placeholder="Drug" ng-model="vcDescription">
                 </label>
 
-                <ion-button class="button button-block button-positive" ng-click="insertVaccinedata(location,dateVaccine,vcDescription)">
+                <ion-button ng-show="action == 'insertVaccineData'" class="button button-block button-positive" ng-click="insertVaccinedata(location,dateVaccine,vcDescription)">
                     Done
+                </ion-button>
+                <ion-button ng-show="action == 'editVaccineData'"class="button button-block button-positive" ng-click="editVaccinedata(location,dateVaccine,vcDescription)">
+                   Edit
                 </ion-button>
             </div>
 </div>
