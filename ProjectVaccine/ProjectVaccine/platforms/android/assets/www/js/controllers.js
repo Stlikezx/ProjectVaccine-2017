@@ -448,61 +448,170 @@
                         $cordovaSQLite.execute(db, query, [JsonStringVaccine, id]);
                         $scope.loadJsondataVaccine();
                     }
-                    else if (country == 'England' && vcdata == '') {
-                        $scope.itemGrps = [
-                            {
-                                title: 'England',
-                                items:
-                                [{ title: 'g1item1' },
-                                { title: 'g1item2' },
-                                { title: 'g1item3' },
-                                { title: 'g1item4' },
-                                { title: 'g1item5' }]
-                            },
-                            {
-                                title: 'group2',
-                                items:
-                                [{ title: 'g2item1' },
-                                { title: 'g2item2' },
-                                { title: 'g2item3' }]
-                            },
-                            {
-                                title: 'group3',
-                                items:
-                                [{ title: 'g3item1' },
-                                { title: 'g3item2' },
-                                { title: 'g3item3' },
-                                { title: 'g3item4' }]
-                            }
-                        ];
+                    else if (country == 'England' && vcdata == null) {
+                        var itemGrps = {
+                            vaccine: [
+                                {
+                                    index: 1,
+                                    title: '2 month',
+                                    items:
+                                    [{ vid: 'DTaP+IPV+Hib1', vcname: 'DTaP+IPV+Hib 1st', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'MenB1', vcname: 'MenB 1st', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'Rotavirus1', vcname: 'Rotavirus 1st', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'PCV1', vcname: 'PCV 1st', location: '', date: '', vcdescription: '', range: 30, status: false }
+                                    ]
+                                },
+                                {
+                                    index: 2,
+                                    title: '3 month',
+                                    items:
+                                    [{ vid: 'DTaP+IPV+Hib 2', vcname: 'DTaP+IPV+Hib 2nd', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'Rotavirus2', vcname: 'Rotavirus 2nd', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    ]
+                                },
+                                {
+                                    index: 3,
+                                    title: '4 month',
+                                    items:
+                                    [{ vid: 'DTaP+IPV+Hib 3', vcname: 'DTaP/IPV/Hib 3rd', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'MenB2', vcname: 'MenB 2nd', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'PCV2', vcname: 'PCV 2nd', location: '', date: '', vcdescription: '', range: 30, status: false }
+                                    ]
+                                },
+                                {
+                                    index: 4,
+                                    title: '12 month',
+                                    items:
+                                    [{ vid: 'Hib4/MenC1', vcname: 'Hib 4th /MenC 1st', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'MenB3', vcname: 'MenB 3rd', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'PCV3', vcname: 'PCV 3rd', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'MMR1', vcname: 'MMR 1st', location: '', date: '', vcdescription: '', range: 30, status: false }
+                                    ]
+                                },
+                                {
+                                    index: 5,
+                                    title: '3 - 4 year',
+                                    items:
+                                    [{ vid: 'DTaP+IPV 4', vcname: 'DTaP+IPV 4th', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'MMR2', vcname: 'MMR 2nd', location: '', date: '', vcdescription: '', range: 30, status: false }
+                                    ]
+                                },
+                                {
+                                    index: 6,
+                                    title: '12 - 13 year',
+                                    items:
+                                    [{ vid: 'MenACWY1', vcname: 'MenACWY 1st', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'HPV x2', vcname: 'MMR 2nd', location: '', date: '', vcdescription: '', range: 30, status: false }
+                                    ]
+                                },
+                                {
+                                    index: 7,
+                                    title: '13 - 18 year',
+                                    items:
+                                    [{ vid: 'Td1 + IPV5', vcname: 'Td 1st + IPV 5th', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'HPV x2', vcname: 'HPV x2', location: '', date: '', vcdescription: '', range: 30, status: false }
+                                    ]
+                                },
+                            ]
+                        };
+
+                        var JsonStringVaccine = JSON.stringify(itemGrps, null, '\t');
+                        console.log(JsonStringVaccine);
+                        var query = "UPDATE test SET vcdata = ? WHERE id = ?";
+                        $cordovaSQLite.execute(db, query, [JsonStringVaccine, id]);
+                        $scope.loadJsondataVaccine();
                     }
-                    else if (country == 'Australia' && vcdata == '') {
-                        $scope.itemGrps = [
-                            {
-                                title: 'Australia',
-                                items:
-                                [{ title: 'g1item1' },
-                                { title: 'g1item2' },
-                                { title: 'g1item3' },
-                                { title: 'g1item4' },
-                                { title: 'g1item5' }]
-                            },
-                            {
-                                title: 'group2',
-                                items:
-                                [{ title: 'g2item1' },
-                                { title: 'g2item2' },
-                                { title: 'g2item3' }]
-                            },
-                            {
-                                title: 'group3',
-                                items:
-                                [{ title: 'g3item1' },
-                                { title: 'g3item2' },
-                                { title: 'g3item3' },
-                                { title: 'g3item4' }]
-                            }
-                        ];
+                    else if (country == 'Australia' && vcdata == null) {
+                        var itemGrps = {
+                            vaccine: [
+                                {
+                                    index: 1,
+                                    title: 'Birth',
+                                    items:
+                                    [{ vid: 'HepB1', vcname: 'HepB 1st', location: '', date: '', vcdescription: '', range: 0, status: false }]
+                                },
+                                {
+                                    index: 2,
+                                    title: '2 month',
+                                    items:
+                                    [{ vid: 'HepB2', vcname: 'HepB 2nd', location: '', date: '', vcdescription: '', range: 60, status: false },
+                                    { vid: 'DTPa1', vcname: 'DTPa 1st', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'Hib1', vcname: 'Hib 1st', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: '13vPCV1', vcname: '13vPCV 1st', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'RV1', vcname: 'RV 1st', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    
+                                    ]
+                                },
+                                {
+                                    index: 3,
+                                    title: '4 month',
+                                    items:
+                                    [{ vid: 'HepB3', vcname: 'HepB 3rd', location: '', date: '', vcdescription: '', range: 60, status: false },
+                                    { vid: 'DTPa2', vcname: 'DTPa 2nd', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'Hib2', vcname: 'Hib 2nd', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: '13vPCV2', vcname: '13vPCV 2nd', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'RV2', vcname: 'RV 2nd', location: '', date: '', vcdescription: '', range: 30, status: false },
+
+                                    ]
+                                },
+                                {
+                                    index: 4,
+                                    title: '6 month',
+                                    items:
+                                    [{ vid: 'HepB4', vcname: 'HepB 4th', location: '', date: '', vcdescription: '', range: 60, status: false },
+                                    { vid: 'DTPa3', vcname: 'DTPa 3rd', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'Hib3', vcname: 'Hib 3rd', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: '13vPCV3', vcname: '13vPCV 3rd', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'RV3', vcname: 'RV 3rd', location: '', date: '', vcdescription: '', range: 30, status: false },
+
+                                    ]
+                                },
+                                {
+                                    index: 5,
+                                    title: '12 month',
+                                    items:
+                                    [{ vid: 'HepA1', vcname: 'HepA 1st', location: '', date: '', vcdescription: '', range: 60, status: false },
+                                    { vid: 'Hib4', vcname: 'Hib 4th', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: '13vPCV3', vcname: '13vPCV 3rd', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'MMR1', vcname: 'MMR 1st', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'MenCCV', vcname: 'MenCCV', location: '', date: '', vcdescription: '', range: 30, status: false }
+
+                                    ]
+                                },
+                                {
+                                    index: 6,
+                                    title: '18 month',
+                                    items:
+                                    [{ vid: 'DTPa4', vcname: 'DTPa 4th', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'MMR2', vcname: 'MMR 2nd', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'Varicella', vcname: 'Varicella', location: '', date: '', vcdescription: '', range: 30, status: false }
+                                    ]
+                                },
+                                {
+                                    index: 7,
+                                    title: '4 year',
+                                    items:
+                                    [{ vid: 'DTPa5', vcname: 'DTPa 5th', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'IPV4', vcname: 'IPV 5th', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: '23vPPV1', vcname: '23vPPV 1st', location: '', date: '', vcdescription: '', range: 30, status: false }
+                                    ]
+                                },
+                                {
+                                    index: 8,
+                                    title: '10-15 year',
+                                    items:
+                                    [{ vid: 'DTPa6', vcname: 'DTPa 6th', location: '', date: '', vcdescription: '', range: 30, status: false },
+                                    { vid: 'HPV', vcname: 'HPV', location: '', date: '', vcdescription: '', range: 30, status: false }
+                                    ]
+                                },
+                            ]
+                        };
+
+                        var JsonStringVaccine = JSON.stringify(itemGrps, null, '\t');
+                        console.log(JsonStringVaccine);
+                        var query = "UPDATE test SET vcdata = ? WHERE id = ?";
+                        $cordovaSQLite.execute(db, query, [JsonStringVaccine, id]);
+                        $scope.loadJsondataVaccine();
                     }
                     else {
                         $scope.loadJsondataVaccine();
